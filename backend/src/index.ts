@@ -1,7 +1,9 @@
 import { Hono } from "hono";
+import { cors } from "hono/cors";
 import { PrismaClient } from "@prisma/client/edge";
 import { withAccelerate } from "@prisma/extension-accelerate";
 import { sign, verify } from "hono/jwt";
+
 import {
   signinInput,
   updatePostInput,
@@ -20,6 +22,8 @@ const app = new Hono<{
   };
   Variables: Variables;
 }>();
+
+app.use("/api/*", cors());
 
 // middleware
 
@@ -66,6 +70,7 @@ app.post("/api/v1/signup", async (c) => {
       });
     }
     const { email, name, password } = body;
+
     const user = await prisma.user.create({
       data: {
         name,

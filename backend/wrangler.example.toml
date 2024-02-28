@@ -20,7 +20,6 @@ node_compat = true
 # database_id = ""
 
 
-
 [vars]
 DATABASE_URL = "accelerate database url"
-
+SECRET = ""
