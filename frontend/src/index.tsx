@@ -1,10 +1,10 @@
 import React from "react";
+import Tiptap from "./editor/editor";
 
 const Index = () => {
   return (
     <div>
-      This is the home page
-      <div className="absolute  w-full h-40"></div>
+      <Tiptap />
     </div>
   );
 };

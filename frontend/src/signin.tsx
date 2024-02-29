@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import signinHandler from "./lib/signinHandler";
 
+import "./index.css";
+
 const Signin = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -26,7 +28,7 @@ const Signin = () => {
 
   return (
     <div>
-      <form className="mt-40 mx-auto  border-2  flex flex-col gap-2 w-2/6 px-12 py-10">
+      <form className="mt-40 mx-auto border-2 border-gray-300 border-solid  flex flex-col gap-2 w-2/6 px-12 py-10">
         <h1 className="text-center text-3xl font-bold ">Sign in</h1>
         <p className="text-center text-xl">
           Dont have an account?{" "}
@@ -38,7 +40,7 @@ const Signin = () => {
         <label htmlFor="Email">Email</label>
         <input
           type="text"
-          className="border-2 p-2"
+          className="border-2 border-2 border-gray-300 border-solid p-2"
           value={email}
           name="Email"
           placeholder="johndoe@example.com"
@@ -51,7 +53,7 @@ const Signin = () => {
           type="password"
           name="Password"
           value={password}
-          className="border-2 p-2"
+          className="border-2 p-2 border-gray-300 border-solid"
           placeholder="*********"
           onChange={(e) => {
             setPassword(e.target.value);
@@ -61,7 +63,7 @@ const Signin = () => {
           onClick={(e) => {
             submitHandler(e);
           }}
-          className="p-2 bg-blue-500 rounded-md text-white text-xl "
+          className="p-2 bg-blue-500 rounded-md outline-none  text-white text-xl "
         >
           submit
         </button>

@@ -1,26 +1,11 @@
-@tailwind base;
+/* @tailwind base; */
 @tailwind components;
 @tailwind utilities;
 
-.ltr {
-  text-align: left;
+.tiptap {
+  @apply outline-none p-4;
 }
 
-.rtl {
-  text-align: right;
-}
-
-.editor-placeholder {
-  color: #999;
-  overflow: hidden;
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  user-select: none;
-  pointer-events: none;
-}
-
-.editor-paragraph {
-  margin: 0 0 15px 0;
-  position: relative;
+input {
+  outline: none;
 }
