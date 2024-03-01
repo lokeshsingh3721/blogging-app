@@ -32,12 +32,7 @@ const MenuBar = ({ editor }: { editor: Editor | null }) => {
       >
         code
       </button>
-      <button onClick={() => editor?.chain().focus().unsetAllMarks().run()}>
-        clear marks
-      </button>
-      <button onClick={() => editor?.chain().focus().clearNodes().run()}>
-        clear nodes
-      </button>
+
       <button
         onClick={() => editor?.chain().focus().setParagraph().run()}
         className={editor?.isActive("paragraph") ? "is-active" : ""}
