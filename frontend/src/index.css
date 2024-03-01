@@ -6,6 +6,16 @@
   @apply outline-none p-4;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 input {
-  outline: none;
+}
+
+a {
+  text-decoration: none;
+  color: black;
 }
