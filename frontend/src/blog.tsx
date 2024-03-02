@@ -10,18 +10,20 @@ import { FaRegCircleUser } from "react-icons/fa6";
 const Blog = () => {
   const [content, setContent] = useState<string>("");
   const [title, setTitle] = useState<string>("");
+  const [author, setAuthor] = useState<string>("");
 
   const navigate = useNavigate();
+  const userId = localStorage.getItem("userId");
 
   const { id } = useParams();
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const name = searchParams.get("name");
 
   useEffect(() => {
     async function init() {
       const data = await getBlog(id as string);
-
+      setAuthor(data.post.authorId);
       setContent(data.post.content);
       setTitle(data.post.title);
     }
@@ -38,7 +40,7 @@ const Blog = () => {
   }
 
   return (
-    <div className="w-full ">
+    <div className="w-full mt-10 ">
       <div className="*:m-0 border  flex justify-between flex-row px-3  gap-2 ">
         <div className="flex">
           <FaRegCircleUser className="w-12 h-auto" />
@@ -52,7 +54,9 @@ const Blog = () => {
           onClick={() => {
             editHandler();
           }}
-          className=" cursor-pointer px-3 text-lg bg-white border border-solid border-gray-300 "
+          className={`cursor-pointer px-3 text-lg bg-white border border-solid border-gray-300  ${
+            author === userId ? "block" : "hidden"
+          } `}
         >
           Edit
         </button>

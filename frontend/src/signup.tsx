@@ -41,7 +41,7 @@ const Signup = () => {
 
   return (
     <div>
-      <form className="mt-20 *:m-0 mx-3 border-2 border-solid border-gray-300  flex flex-col gap-3  px-12 py-10">
+      <form className="mt-20 *:m-0 mx-3 shadow-lg  flex flex-col gap-3  px-12 py-10">
         <h1 className="text-center text-3xl font-bold underline">Sign Up</h1>
         <p className="text-center text-xl">
           Already registered?{" "}
@@ -54,7 +54,7 @@ const Signup = () => {
         <input
           type="text"
           name="Name"
-          className="border-2 p-2 outline-none border-gray-300 border-solid"
+          className="border-2 p-3 outline-none border-gray-300 border-solid"
           value={name}
           placeholder="John Doe"
           onChange={(e) => {
@@ -64,7 +64,7 @@ const Signup = () => {
         <label htmlFor="Email">Email</label>
         <input
           type="text"
-          className="border-2 p-2 outline-none border-gray-300 border-solid"
+          className="border-2 p-3 outline-none border-gray-300 border-solid"
           value={email}
           name="Email"
           placeholder="johndoe@example.com"
@@ -77,7 +77,7 @@ const Signup = () => {
           type="password"
           name="Password"
           value={password}
-          className="border-2 p-2 outline-none border-gray-300 border-solid"
+          className="border-2 p-3 outline-none border-gray-300 border-solid"
           placeholder="*********"
           onChange={(e) => {
             setPassword(e.target.value);

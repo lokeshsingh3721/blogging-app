@@ -38,7 +38,7 @@ const Signin = () => {
   }
 
   return (
-    <form className="mt-20  border-2 mx-4 *:m-0 border-gray-300 border-solid  flex flex-col gap-3  px-12 py-10">
+    <form className="mt-20  mx-4 *:m-0  flex flex-col gap-3 shadow-lg px-12 py-10">
       <h1 className="text-center text-3xl underline  font-bold ">Sign in</h1>
       <p className="text-center text-xl">
         Dont have an account?{" "}
@@ -50,7 +50,7 @@ const Signin = () => {
       <label htmlFor="Email">Email</label>
       <input
         type="text"
-        className=" border-gray-300 border-solid outline-none p-2"
+        className=" border-gray-300 border-solid outline-none text-md p-3"
         value={email}
         name="Email"
         placeholder="johndoe@example.com"
@@ -63,7 +63,7 @@ const Signin = () => {
         type="password"
         name="Password"
         value={password}
-        className="border-2 p-2 outline-none border-gray-300 border-solid"
+        className="border-2 p-3 outline-none  border-gray-300 border-solid"
         placeholder="*********"
         onChange={(e) => {
           setPassword(e.target.value);

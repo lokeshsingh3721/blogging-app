@@ -56,6 +56,7 @@ export async function getBlog(id: string) {
   );
 
   const data = await res.json();
+
   return data;
 }
 

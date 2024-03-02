@@ -17,6 +17,8 @@ async function signupHandler({ name, email, password }: SignupType) {
   );
   const data = await res.json();
   localStorage.setItem("name", data.name);
+  localStorage.setItem("userId", data.userId);
+
   return data;
 }
 

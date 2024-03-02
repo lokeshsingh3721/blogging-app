@@ -3,12 +3,13 @@ import StarterKit from "@tiptap/starter-kit";
 import React, { useEffect, useState } from "react";
 import MenuBar from "./editor/menu";
 import { getBlog, updateBlog } from "./lib/postHandler";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const EditBlog = () => {
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState<Content>();
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const extensions = [StarterKit];
 
@@ -37,7 +38,11 @@ const EditBlog = () => {
     }
     const data = await updateBlog(id, title, editor);
 
-    console.log(data);
+    if (data.success) {
+      navigate("/");
+    } else {
+      alert("server error please try later");
+    }
   }
 
   if (!content) {

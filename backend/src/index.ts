@@ -85,6 +85,7 @@ app.post("/api/v1/signup", async (c) => {
       success: true,
       token,
       name: user.name,
+      userId: user.id,
     });
   } catch (error: unknown) {
     if (error instanceof Error) {
@@ -145,6 +146,7 @@ app.post("/api/v1/signin", async (c) => {
       message: "login successfull",
       token,
       name: user.name,
+      userId: user.id,
     });
   } catch (error: unknown) {
     if (error instanceof Error) {
@@ -320,7 +322,6 @@ app.get("/api/v1/blog/:id", async (c) => {
     // if post exist
     const post = await prisma.post.findUnique({
       where: {
-        authorId: userId,
         id,
       },
     });

@@ -14,8 +14,10 @@ async function signinHandler({ email, password }: SigninType) {
       }),
     }
   );
+
   const data = await res.json();
   localStorage.setItem("name", data.name);
+  localStorage.setItem("userId", data.userId);
   return data;
 }
 
