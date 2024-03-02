@@ -44,12 +44,20 @@ const Index = () => {
     name: post.author.name,
   }));
 
+  if (!data) {
+    return <h2 className="text-center text-2xl">Loading...</h2>;
+  }
+
   return (
     <div>
       <div className="flex flex-col gap-2">
         {blogs?.map((blog: Blog) => {
           return (
-            <Link className="link" key={blog.id} to={`/blog/${blog.id}`}>
+            <Link
+              className="link"
+              key={blog.id}
+              to={`/blog/${blog.id}?name=${blog.name}`}
+            >
               <Card blog={blog} />
             </Link>
           );

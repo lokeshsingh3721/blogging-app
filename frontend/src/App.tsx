@@ -8,6 +8,7 @@ import Tiptap from "./editor/editor";
 import Blog from "./blog";
 import Navbar from "./components/navbar";
 import ProtectedRoute from "./components/ProtectedRoute";
+import EditBlog from "./editBlog";
 
 const App = () => {
   return (
@@ -27,6 +28,14 @@ const App = () => {
           element={
             <ProtectedRoute>
               <Tiptap />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/edit/:id"
+          element={
+            <ProtectedRoute>
+              <EditBlog />
             </ProtectedRoute>
           }
         />

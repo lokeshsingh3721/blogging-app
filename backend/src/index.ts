@@ -317,8 +317,6 @@ app.get("/api/v1/blog/:id", async (c) => {
     const userId = c.get("userId");
     const id = c.req.param("id");
 
-    console.log(userId);
-
     // if post exist
     const post = await prisma.post.findUnique({
       where: {

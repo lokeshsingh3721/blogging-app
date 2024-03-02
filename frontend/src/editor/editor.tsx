@@ -30,7 +30,7 @@ const Tiptap = () => {
 
     if (data.success) {
       setDetails({ isLoading: false, error: null });
-      navigate("/");
+      // navigate("/");
     } else {
       setDetails({ isLoading: false, error: data.message });
     }
