@@ -8,11 +8,10 @@ type Blog = {
   id: string;
   name: string;
   title: string;
-  content: string;
 };
 
 const Card = ({ blog }: { blog: Blog }) => {
-  const { title, content, name } = blog;
+  const { title, name } = blog;
 
   return (
     <div className=" flex shadow-sm border-b-2   justify-center gap-2">

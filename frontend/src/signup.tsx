@@ -3,16 +3,20 @@ import { Link, useNavigate } from "react-router-dom";
 import signupHandler from "./lib/signupHandler";
 
 import "./index.css";
+import { useRecoilState } from "recoil";
+import { loadingAtom } from "./store/loadingAtom";
 
 const Signup = () => {
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [details, setDetails] = useRecoilState(loadingAtom);
 
   const navigate = useNavigate();
 
   async function submitHandler(e: React.MouseEvent) {
     e.preventDefault();
+    setDetails({ error: null, isLoading: true });
     const data = await signupHandler({ name, email, password });
 
     if (data.success) {
@@ -20,14 +24,21 @@ const Signup = () => {
       setName("");
       setEmail("");
       setPassword("");
+      setDetails({ isLoading: false, error: null });
       navigate("/");
     } else {
+      setDetails({ error: data.error, isLoading: false });
       alert("invalid input");
       setName("");
       setEmail("");
       setPassword("");
     }
   }
+
+  if (details.isLoading) {
+    return <h2 className="text-center text-2xl">Loading...</h2>;
+  }
+
   return (
     <div>
       <form className="mt-20 *:m-0 mx-3 border-2 border-solid border-gray-300  flex flex-col gap-3  px-12 py-10">

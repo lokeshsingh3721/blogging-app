@@ -7,17 +7,39 @@ import Signup from "./signup";
 import Tiptap from "./editor/editor";
 import Blog from "./blog";
 import Navbar from "./components/navbar";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const App = () => {
   return (
     <BrowserRouter>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Index />} />
-        <Route path="/editor" element={<Tiptap />} />
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <Index />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/new"
+          element={
+            <ProtectedRoute>
+              <Tiptap />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/blog/:id" element={<Blog />} />
+        <Route
+          path="/blog/:id"
+          element={
+            <ProtectedRoute>
+              <Blog />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

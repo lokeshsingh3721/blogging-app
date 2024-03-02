@@ -3,18 +3,19 @@ import StarterKit from "@tiptap/starter-kit";
 import MenuBar from "./menu";
 import { useNavigate } from "react-router-dom";
 import { createBlog } from "../lib/postHandler";
+import { useState } from "react";
+import { useRecoilState } from "recoil";
+import { loadingAtom } from "../store/loadingAtom";
 
 // define your extension array
 const extensions = [StarterKit];
 
-let content = "<p>Hello World!</p>";
-const editorStateString = localStorage.getItem("editor");
-
-if (editorStateString !== null) {
-  content = JSON.parse(editorStateString);
-}
-
 const Tiptap = () => {
+  const [title, setTitle] = useState<string>("");
+  const [details, setDetails] = useRecoilState(loadingAtom);
+
+  const content = "<p>Hello World!</p>";
+
   const navigate = useNavigate();
 
   const editor = useEditor({
@@ -22,20 +23,40 @@ const Tiptap = () => {
     content,
   });
 
-  const postHandler = () => {
+  const postHandler = async () => {
     if (!editor) return;
+    setDetails({ isLoading: true, error: null });
+    const data = await createBlog(title, editor);
 
-    const data = createBlog(editor);
-
-    // if everything is good return to the home page
-    navigate("/");
+    if (data.success) {
+      setDetails({ isLoading: false, error: null });
+      navigate("/");
+    } else {
+      setDetails({ isLoading: false, error: data.message });
+    }
   };
+
+  if (details.isLoading) {
+    return <h1 className="text-2xl text-center">Posting the blog ...</h1>;
+  }
+
+  if (details.error) {
+    return (
+      <h1 className="text-2xl text-center">
+        Server error please trying again later...
+      </h1>
+    );
+  }
 
   return (
     <div className="mt-10 px-4 sm:w-1/2  ">
       <input
         className="w-full py-2 block border outline-none border-gray-400  text-2xl font-bold rounded-2xl mb-5 text-center"
         type="text"
+        value={title}
+        onChange={(e) => {
+          setTitle(e.target.value);
+        }}
         placeholder="Enter title"
       />
 

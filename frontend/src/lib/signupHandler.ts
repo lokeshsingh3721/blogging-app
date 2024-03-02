@@ -9,13 +9,14 @@ async function signupHandler({ name, email, password }: SignupType) {
         "Content-type": "application/json",
       },
       body: JSON.stringify({
-        name,
-        email,
+        name: name?.toLowerCase(),
+        email: email.toLowerCase(),
         password,
       }),
     }
   );
   const data = await res.json();
+  localStorage.setItem("name", data.name);
   return data;
 }
 

@@ -3,27 +3,38 @@ import { Link, useNavigate } from "react-router-dom";
 import signinHandler from "./lib/signinHandler";
 
 import "./index.css";
+import { useRecoilState } from "recoil";
+import { loadingAtom } from "./store/loadingAtom";
 
 const Signin = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [details, setDetails] = useRecoilState(loadingAtom);
   const navigate = useNavigate();
 
   async function submitHandler(e: React.MouseEvent) {
     e.preventDefault();
+    setDetails({ isLoading: true, error: null });
     const data = await signinHandler({ email, password });
 
     if (data.success) {
       localStorage.setItem("token", data.token);
       setEmail("");
       setPassword("");
+      setDetails({ isLoading: false, error: null });
+
       navigate("/");
     } else {
+      setDetails({ isLoading: false, error: null });
       alert("invalid input");
 
       setEmail("");
       setPassword("");
     }
+  }
+
+  if (details.isLoading) {
+    return <h2 className="text-center text-2xl">Loading...</h2>;
   }
 
   return (

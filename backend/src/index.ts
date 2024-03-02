@@ -82,8 +82,9 @@ app.post("/api/v1/signup", async (c) => {
     const token = await sign({ userId: user.id }, c.env.SECRET);
 
     return c.json({
-      sucess: true,
+      success: true,
       token,
+      name: user.name,
     });
   } catch (error: unknown) {
     if (error instanceof Error) {
@@ -143,6 +144,7 @@ app.post("/api/v1/signin", async (c) => {
       success: true,
       message: "login successfull",
       token,
+      name: user.name,
     });
   } catch (error: unknown) {
     if (error instanceof Error) {
@@ -336,6 +338,39 @@ app.get("/api/v1/blog/:id", async (c) => {
       success: true,
       message: "post fetched successfully",
       post,
+    });
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return c.json({
+        success: false,
+        message: error.message,
+      });
+    }
+  }
+});
+
+app.get("/api/v1/blog", async (c) => {
+  const prisma = new PrismaClient({
+    datasourceUrl: c.env.DATABASE_URL,
+  }).$extends(withAccelerate());
+
+  try {
+    const posts = await prisma.post.findMany({
+      select: {
+        id: true,
+        title: true,
+        published: true,
+        author: {
+          select: {
+            name: true,
+          },
+        },
+      },
+    });
+    return c.json({
+      success: true,
+      message: "posts fetched successfully",
+      posts,
     });
   } catch (error: unknown) {
     if (error instanceof Error) {

@@ -5,8 +5,10 @@ import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const name = localStorage.getItem("name");
 
   function logoutHandler() {
+    localStorage.removeItem("token");
     navigate("/signin");
   }
 
@@ -24,7 +26,7 @@ const Navbar = () => {
         />
         <button
           onClick={() => {
-            navigate("/editor");
+            navigate("/new");
           }}
           className="cursor-pointer px-3 text-lg bg-white border-2  border-solid border-black"
         >
@@ -32,8 +34,12 @@ const Navbar = () => {
         </button>
       </div>
       <div className="flex flex-row justify-center items-center gap-4 ">
-        <div className="text-lg rounded-full px-4 py-1 border-2 border-solid border-black-300 ">
-          J
+        <div
+          className={`text-lg rounded-full px-4 py-1 border-2 border-solid border-black-300 ${
+            name ? "block" : "hidden"
+          } `}
+        >
+          {name ? name.split(" ")[0][0].toUpperCase() : ""}
         </div>
         <PiSignOut
           onClick={() => {

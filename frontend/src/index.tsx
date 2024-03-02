@@ -1,45 +1,53 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import Navbar from "./components/navbar";
 import Card from "./components/card";
 import { Link } from "react-router-dom";
+import { getBlogs } from "./lib/postHandler";
 
 type Blog = {
   id: string;
   name: string;
   title: string;
-  content: string;
 };
 
-const data: Blog[] = [
-  {
-    id: "324ldfkdsfj34lk",
-    name: "Max doe",
-    title: "coding is Worst",
-    content:
-      "fjadslkfjskjfals dfjklsdjflsjdlfjlksadjfkjdsfkasdlkfjslkdjfaklsdfjklf",
-  },
-  {
-    id: "324ldfkdsfj34lk",
-    name: "John doe",
-    title: "coding is good",
-    content:
-      "fjadslkfjskjfals dfjklsdjflsjdlfjlksadjfkjdsfkasdlkfjslkdjfaklsdfjklf",
-  },
-  {
-    id: "324ldfkdsfj34lk",
-    name: "Jay doe",
-    title: "coding is Fine",
-    content:
-      "fjadslkfjskjfals dfjklsdjflsjdlfjlksadjfkjdsfkasdlkfjslkdjfaklsdfjklf",
-  },
-];
+type Post = {
+  id: string;
+  title: string;
+  published: boolean;
+  author: {
+    name: string;
+  };
+};
+
+type ApiResponse = {
+  success: boolean;
+  message: string;
+  posts: Post[];
+};
 
 const Index = () => {
+  const [data, setData] = useState<ApiResponse>();
+
+  let blogs: Blog[] | undefined = [];
+
+  useEffect(() => {
+    const init = async () => {
+      setData(await getBlogs());
+    };
+    init();
+  }, []);
+
+  blogs = data?.posts.map((post) => ({
+    id: post.id,
+    title: post.title,
+    name: post.author.name,
+  }));
+
   return (
     <div>
       <div className="flex flex-col gap-2">
-        {data.map((blog: Blog) => {
+        {blogs?.map((blog: Blog) => {
           return (
             <Link className="link" key={blog.id} to={`/blog/${blog.id}`}>
               <Card blog={blog} />
