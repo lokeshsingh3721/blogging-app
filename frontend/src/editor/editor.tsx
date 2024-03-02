@@ -7,7 +7,12 @@ import { createBlog } from "../lib/postHandler";
 // define your extension array
 const extensions = [StarterKit];
 
-const content = "<p>Hello World!</p>";
+let content = "<p>Hello World!</p>";
+const editorStateString = localStorage.getItem("editor");
+
+if (editorStateString !== null) {
+  content = JSON.parse(editorStateString);
+}
 
 const Tiptap = () => {
   const navigate = useNavigate();
@@ -20,11 +25,6 @@ const Tiptap = () => {
   const postHandler = () => {
     if (!editor) return;
 
-    const editorAsJson = editor?.getJSON();
-    const editorAsString = JSON.stringify(editorAsJson);
-
-    console.log(editorAsString);
-
     const data = createBlog(editor);
 
     // if everything is good return to the home page
@@ -32,7 +32,7 @@ const Tiptap = () => {
   };
 
   return (
-    <div className="mt-40 w-full sm:w-1/2 mx-auto   ">
+    <div className="mt-10 px-4 sm:w-1/2  ">
       <input
         className="w-full py-2 block border outline-none border-gray-400  text-2xl font-bold rounded-2xl mb-5 text-center"
         type="text"
@@ -49,7 +49,7 @@ const Tiptap = () => {
         onClick={() => {
           postHandler();
         }}
-        className=" block mx-auto px-3 py-2 w-32 cursor-pointer rounded-md mt-2"
+        className=" block bg-white   border-solid border-[1px] border-gray-300 mx-auto px-3 py-3 w-32 cursor-pointer rounded-md mt-6"
       >
         Post
       </button>

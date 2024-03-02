@@ -1,5 +1,7 @@
 import { Editor } from "@tiptap/react";
 
 export function createBlog(editor: Editor) {
-  console.log(editor);
+  const editorAsJson = editor?.getJSON();
+  localStorage.setItem("editor", JSON.stringify(editorAsJson));
+  console.log(editorAsJson);
 }

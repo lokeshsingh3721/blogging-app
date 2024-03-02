@@ -1,17 +1,34 @@
 import React from "react";
 import { FaImage } from "react-icons/fa";
 import { FaRegCircleUser } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 
 const Blog = () => {
+  const navigate = useNavigate();
+
+  function editHandler() {
+    navigate("/editor");
+  }
+
   return (
     <div className="w-full ">
-      <div className="*:m-0 border flex flex-row px-3  gap-2 ">
-        <FaRegCircleUser className="w-12 h-auto" />
+      <div className="*:m-0 border  flex justify-between flex-row px-3  gap-2 ">
+        <div className="flex">
+          <FaRegCircleUser className="w-12 h-auto" />
 
-        <div className="flex flex-col m-0 px-2">
-          <p className=" m-0 text-xl">John cena </p>
-          <p className="m-0 text-md text-gray-400 ">1 mar, 2024</p>
+          <div className="flex flex-col m-0 px-2">
+            <p className=" m-0 text-xl">John cena </p>
+            <p className="m-0 text-md text-gray-400 ">1 mar, 2024</p>
+          </div>
         </div>
+        <button
+          onClick={() => {
+            editHandler();
+          }}
+          className=" cursor-pointer px-3 text-lg bg-white border border-solid border-gray-300 "
+        >
+          Edit
+        </button>
       </div>
 
       <p className="px-4 align-">
