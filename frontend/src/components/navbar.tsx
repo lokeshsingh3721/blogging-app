@@ -8,7 +8,7 @@ const Navbar = () => {
   const name = localStorage.getItem("name");
 
   function logoutHandler() {
-    localStorage.removeItem("token");
+    localStorage.clear();
     navigate("/signin");
   }
 

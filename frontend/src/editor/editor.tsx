@@ -26,11 +26,18 @@ const Tiptap = () => {
   const postHandler = async () => {
     if (!editor) return;
     setDetails({ isLoading: true, error: null });
+    if (!title || !editor) {
+      alert("fields cant be empty");
+      setDetails({ isLoading: false, error: null });
+      navigate("/new");
+      return;
+    }
+
     const data = await createBlog(title, editor);
 
     if (data.success) {
       setDetails({ isLoading: false, error: null });
-      // navigate("/");
+      navigate("/");
     } else {
       setDetails({ isLoading: false, error: data.message });
     }
