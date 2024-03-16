@@ -17,11 +17,7 @@ This is a blogging application that allows users to create, edit, and delete the
 * **Delete Posts:**  
   * Users can delete their own blog posts.
 
-**Demo Video**
 
-
-
-https://github.com/lokeshsingh3721/blogging-app/assets/71646466/828e38c2-7d33-4fa6-8a2e-41f0284b493b
 
 
 
