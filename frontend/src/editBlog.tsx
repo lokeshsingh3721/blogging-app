@@ -50,7 +50,7 @@ const EditBlog = () => {
   }
 
   return (
-    <div className="mt-10 px-4 sm:w-1/2  ">
+    <div className="mt-10 px-4  sm:w-3/4 sm:mx-auto   ">
       <input
         className="w-full py-2 block border outline-none border-gray-400  text-2xl font-bold rounded-2xl mb-5 text-center"
         type="text"

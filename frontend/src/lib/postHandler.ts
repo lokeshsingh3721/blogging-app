@@ -60,6 +60,25 @@ export async function getBlog(id: string) {
   return data;
 }
 
+export async function deleteBlog(id: string) {
+  const token = localStorage.getItem("token");
+
+  const res = await fetch(
+    `https://backend.lokiislazy.workers.dev/api/v1/blog/${id}`,
+    {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+
+  const data = await res.json();
+
+  return data;
+}
+
 export async function updateBlog(id, title: string, editor: Editor) {
   const content = editor.getHTML();
 

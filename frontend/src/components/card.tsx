@@ -14,9 +14,9 @@ const Card = ({ blog }: { blog: Blog }) => {
   const { title, name } = blog;
 
   return (
-    <div className=" flex shadow-sm border-b-2   justify-center gap-2">
+    <div className="  flex shadow-sm border-b-2   justify-center gap-2 sm:gap-12  ">
       <div className="flex flex-col   ">
-        <div className="*:m-0 flex items-center p-3 justify-between gap-2 ">
+        <div className="*:m-0 flex items-center p-3 sm:p-5 justify-between gap-2 sm:gap-5 ">
           <FaRegCircleUser className="w-8 h-auto" />
           <p className="text-lg">{name}</p>
           <p className="m-0 text-lg text-gray-400 ">1 mar, 2024</p>

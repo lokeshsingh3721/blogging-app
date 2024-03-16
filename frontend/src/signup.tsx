@@ -41,7 +41,7 @@ const Signup = () => {
 
   return (
     <div>
-      <form className="mt-20 *:m-0 mx-3 shadow-lg  flex flex-col gap-3  px-12 py-10">
+      <form className="mt-20 *:m-0 mx-3 shadow-lg  flex flex-col gap-3  px-12 py-10  sm:w-1/4 sm:mx-auto ">
         <h1 className="text-center text-3xl font-bold underline">Sign Up</h1>
         <p className="text-center text-xl">
           Already registered?{" "}

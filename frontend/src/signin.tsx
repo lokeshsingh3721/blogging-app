@@ -38,7 +38,7 @@ const Signin = () => {
   }
 
   return (
-    <form className="mt-20  mx-4 *:m-0  flex flex-col gap-3 shadow-lg px-12 py-10">
+    <form className="mt-20  mx-4 *:m-0  flex flex-col gap-3 shadow-lg px-12 py-10 sm:w-1/4 sm:mx-auto ">
       <h1 className="text-center text-3xl underline  font-bold ">Sign in</h1>
       <p className="text-center text-xl">
         Dont have an account?{" "}
